@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
 
-import confetti from 'canvas-confetti'
-
 import './App.css'
 import { useMovementsGame } from './hooks/useMovementsGame';
 import { fireworks } from './utils/fireworks';
@@ -20,15 +18,14 @@ function App() {
     resetGame} = useMovementsGame();
 
   useEffect(() => {
-    validatePlayerWin();
-    validateCPUWin();
     validateTieGame();
-
+    validateCPUWin();
+    validatePlayerWin();
     if(playerWin){
       fireworks();
     }
-  }, [select, playerWin, cpuWin]);
 
+  }, [select, playerWin, cpuWin, tieGame]);
 
   return (
     <section className="App">
@@ -49,7 +46,7 @@ function App() {
         )
       }
       {
-        tieGame && (
+        tieGame && !playerWin && (
           <div className="win" >
             <h1 style={{ color: 'white' }}>¡EMPATE!</h1>
             <button onClick={ resetGame }>Volver a jugar</button>

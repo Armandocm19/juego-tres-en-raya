@@ -20,7 +20,8 @@ export const useMovementsGame = () => {
     }
 
     const validateTieGame = () => {
-      if(select.every(el => el === 'X' || el === 'O') && !playerWin && !cpuWin){
+      if(!playerWin && !cpuWin && select.every(el => el === 'X' || el === 'O')){
+        setPlayerWin(false);
         setTieGame(true);
       };
     }
@@ -89,7 +90,7 @@ export const useMovementsGame = () => {
             }
           }
         }
-              return newState;
+          return newState;
         })
     }
 
