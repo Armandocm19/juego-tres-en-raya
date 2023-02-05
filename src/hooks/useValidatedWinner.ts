@@ -16,7 +16,6 @@ const INITIAL_STATE_GAMES_MODE = {
 
 export const useValidatedWinner = ( movements: string[] ) => {
 
-
     const [stateGamesMode, setStateGamesMode] = useState<Props>(INITIAL_STATE_GAMES_MODE);
 
     const resetGame = () => {
@@ -25,7 +24,7 @@ export const useValidatedWinner = ( movements: string[] ) => {
 
       const validateTieGame = () => {
         const { playerWin, cpuWin } = stateGamesMode;
-        if(!playerWin && !cpuWin && movements.every(el => el === 'X' || el === 'O')){
+        if(!playerWin &&!cpuWin && movements.every(el => el === 'X' || el === 'O')){
           setStateGamesMode( prev => ({
             ...prev,
             tieGame: true
@@ -40,7 +39,7 @@ export const useValidatedWinner = ( movements: string[] ) => {
               setStateGamesMode( prev => ({
                 ...prev,
                 playerWin: true
-              }));;
+              }));
             }
           }
         };

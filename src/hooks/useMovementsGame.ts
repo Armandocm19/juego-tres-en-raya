@@ -44,12 +44,12 @@ export const useMovementsGame = () => {
               turnCPU();
               break;
           }else{
-              newState[positionRandom] = 'O';
+            newState[positionRandom] = 'O';
           }
           stopBucle = 1;
 
         } else {
-            positionRandom = Math.floor(Math.random() * (8 - 0) + 0);
+          positionRandom = Math.floor(Math.random() * (8 - 0) + 0);
         }
       }
         return newState;

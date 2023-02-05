@@ -43,7 +43,7 @@ function App() {
         )
       }
       {
-        cpuWin && (
+        cpuWin && !playerWin && (
           <FinishGameMessage colorMessage='red' reset={resetAllGame} message='¡HAS PERDIDO!' />
         )
       }
