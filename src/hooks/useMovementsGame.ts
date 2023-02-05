@@ -24,7 +24,7 @@ export const useMovementsGame = () => {
         let newState = [...prev];
         newState[position] = 'X';
   
-        let keyState;
+        let movementState;
         let positionRandom = Math.floor( Math.random() * (8 - 0) + 0);;
         let stopBucle = 0;
         let validate;
@@ -35,9 +35,11 @@ export const useMovementsGame = () => {
             break;
         }
   
-        keyState = newState[positionRandom];
-        if (keyState === '') {
-          validate = getTurnRandomCPU(newState)
+        movementState = newState[positionRandom];
+
+        if (movementState === '') {
+
+          validate = getTurnRandomCPU(newState) //Valida si el movimiento del cpu debe ser random o no
           if( validate ){
               turnCPU();
               break;
@@ -45,15 +47,9 @@ export const useMovementsGame = () => {
               newState[positionRandom] = 'O';
           }
           stopBucle = 1;
+
         } else {
-  
-          validate = getTurnRandomCPU(newState)
-          if( validate ){
-              turnCPU();
-              break;
-          }else{
             positionRandom = Math.floor(Math.random() * (8 - 0) + 0);
-          }
         }
       }
         return newState;

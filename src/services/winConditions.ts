@@ -1,4 +1,4 @@
-  export const winConditions = [
+  export const winConditions = [ //Aqui tenemos todos los posibles movimientos en el juego
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
