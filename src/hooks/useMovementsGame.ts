@@ -19,7 +19,7 @@ export const useMovementsGame = () => {
       });
     };
 
-    const onChangeKey = (position: number) => {
+    const onChangeMovements = (position: number) => {
       setMovements(prev => {
         let newState = [...prev];
         newState[position] = 'X';
@@ -62,7 +62,7 @@ export const useMovementsGame = () => {
 
     return {
         movements,
-        onChangeKey,
+        onChangeMovements,
         resetMovements
     }
 

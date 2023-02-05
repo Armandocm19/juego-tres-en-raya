@@ -2,21 +2,34 @@ import { useState } from 'react';
 
 import { winConditions } from "../services/winConditions";
 
+interface Props {
+  tieGame: boolean,
+  playerWin: boolean,
+  cpuWin: boolean,
+}
+
+const INITIAL_STATE_GAMES_MODE = {
+  tieGame: false,
+  playerWin: false,
+  cpuWin: false,
+}
+
 export const useValidatedWinner = ( movements: string[] ) => {
 
-    const [ tieGame, setTieGame ] = useState<boolean>(false);
-    const [ playerWin, setPlayerWin ] = useState<boolean>(false);
-    const [ cpuWin, setCpuWin ] = useState<boolean>(false);
+
+    const [stateGamesMode, setStateGamesMode] = useState<Props>(INITIAL_STATE_GAMES_MODE);
 
     const resetGame = () => {
-        setPlayerWin(false);
-        setCpuWin(false);
-        setTieGame(false);
+      setStateGamesMode(INITIAL_STATE_GAMES_MODE);
       }
 
       const validateTieGame = () => {
+        const { playerWin, cpuWin } = stateGamesMode;
         if(!playerWin && !cpuWin && movements.every(el => el === 'X' || el === 'O')){
-          setTieGame(true);
+          setStateGamesMode( prev => ({
+            ...prev,
+            tieGame: true
+          }));
         };
       }
   
@@ -24,7 +37,10 @@ export const useValidatedWinner = ( movements: string[] ) => {
           for (let i = 0; i < winConditions.length; i++) {
             let [a, b, c] = winConditions[i];
             if (movements[a] === 'X' && movements[b] === 'X' && movements[c] === 'X') {
-              setPlayerWin(true);
+              setStateGamesMode( prev => ({
+                ...prev,
+                playerWin: true
+              }));;
             }
           }
         };
@@ -33,18 +49,19 @@ export const useValidatedWinner = ( movements: string[] ) => {
           for (let i = 0; i < winConditions.length; i++) {
             let [a, b, c] = winConditions[i];
             if (movements[a] === 'O' && movements[b] === 'O' && movements[c] === 'O') {
-              setCpuWin(true);
+              setStateGamesMode( prev => ({
+                ...prev,
+                cpuWin: true
+              }));;
             }
           }
         };
 
         return {
-            playerWin,
-            cpuWin,
+            stateGamesMode,
             validatePlayerWin,
             validateCPUWin,
             validateTieGame,
-            tieGame,
             resetGame
         }
 }
