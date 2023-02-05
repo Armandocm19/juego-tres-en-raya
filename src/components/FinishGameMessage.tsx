@@ -1,4 +1,3 @@
-import { useValidatedWinner } from "../hooks";
 
 interface Props {
     colorMessage: string,

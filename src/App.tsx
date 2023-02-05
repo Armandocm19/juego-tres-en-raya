@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 
-import './App.css'
 import { useMovementsGame, useValidatedWinner } from './hooks';
 import { fireworks } from './utils/fireworks';
 import { FinishGameMessage, HomePageGame } from './components';
+
+import './App.css'
 
 function App() {
 
